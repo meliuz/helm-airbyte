@@ -961,3 +961,34 @@ jobs:
     ##    cpu: 200m
     ##    memory: 1Gi
     limits: {}
+
+cloudProxy:
+  enabled: false
+  replicaCount: 1
+
+  image:
+    repository: gcr.io/cloudsql-docker/gce-proxy
+    pullPolicy: IfNotPresent
+    tag: latest
+  
+  projectId: ""
+  region: ""
+  instanceName: ""
+
+  service:
+    type: ClusterIP
+    port: 5432
+
+  resources:
+  ## Example:
+  ## requests:
+  ##    memory: 256Mi
+  ##    cpu: 250m
+  requests: {}
+  ## Example:
+  ## limits:
+  ##    cpu: 200m
+  ##    memory: 1Gi
+  limits: {}
+
+  
