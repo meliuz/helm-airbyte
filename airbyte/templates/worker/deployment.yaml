@@ -147,6 +147,16 @@ spec:
             configMapKeyRef:
               name: {{ include "common.names.fullname" . }}-env
               key: JOB_MAIN_CONTAINER_MEMORY_LIMIT
+        - name: KUBERNETES_AUTH_TRYSERVICEACCOUNT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: KUBERNETES_AUTH_TRYSERVICEACCOUNT
+        - name: KUBERNETES_AUTH_TRYKUBECONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: KUBERNETES_AUTH_TRYKUBECONFIG
         - name: S3_LOG_BUCKET
           valueFrom:
             configMapKeyRef:
