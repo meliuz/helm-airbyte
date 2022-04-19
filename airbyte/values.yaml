@@ -33,6 +33,8 @@ version: ""
 
 ## @section Webapp Parameters
 
+runBootload: true
+
 webapp:
   ## @param webapp.replicaCount Number of webapp replicas
   replicaCount: 1
@@ -43,7 +45,7 @@ webapp:
   image:
     repository: airbyte/webapp
     pullPolicy: IfNotPresent
-    tag: 0.36.0-alpha
+    tag: 0.36.3-alpha
 
   ## @param webapp.podAnnotations [object] Add extra annotations to the webapp pod(s)
   ##
@@ -209,7 +211,7 @@ scheduler:
   image:
     repository: airbyte/scheduler
     pullPolicy: IfNotPresent
-    tag: 0.36.0-alpha
+    tag: 0.36.3-alpha
 
   ## @param scheduler.podAnnotations [object] Add extra annotations to the scheduler pod
   ##
@@ -440,7 +442,7 @@ server:
   image:
     repository: airbyte/server
     pullPolicy: IfNotPresent
-    tag: 0.36.0-alpha
+    tag: 0.36.3-alpha
 
   ## @param server.podAnnotations [object] Add extra annotations to the server pod
   ##
@@ -581,7 +583,7 @@ worker:
   image:
     repository: airbyte/worker
     pullPolicy: IfNotPresent
-    tag: 0.36.0-alpha
+    tag: 0.36.3-alpha
 
   ## @param worker.podAnnotations [object] Add extra annotations to the worker pod(s)
   ##
@@ -699,7 +701,7 @@ bootloader:
   image:
     repository: airbyte/bootloader
     pullPolicy: IfNotPresent
-    tag: 0.36.0-alpha
+    tag: 0.36.3-alpha
   
   ## @param bootloader.podAnnotations [object] Add extra annotations to the bootloader pod
   ##
@@ -952,12 +954,44 @@ jobs:
   ## @param jobs.resources.requests [object] The requested resources for jobs
   resources:
     ## Example:
-    ## requests:
-    ##    memory: 256Mi
-    ##    cpu: 250m
-    requests: {}
-    ## Example:
     ## limits:
     ##    cpu: 200m
     ##    memory: 1Gi
     limits: {}
+    ## Examples:
+    ## requests:
+    ##    memory: 256Mi
+    ##    cpu: 250m
+    requests: {}
+
+cloudProxy:
+  enabled: true
+  replicaCount: 1
+
+  image:
+    repository: gcr.io/cloudsql-docker/gce-proxy
+    pullPolicy: IfNotPresent
+    tag: latest
+  
+  projectId: ""
+  region: ""
+  instanceName: ""
+
+  service:
+    type: ClusterIP
+    port: 5432
+
+  podAnnotations: {}
+
+  # resources:
+  #   ## Example:
+  #   ## limits:
+  #   ##    cpu: 200m
+  #   ##    memory: 1Gi
+  #   limits: {}
+  #   ## Examples:
+  #   ## requests:
+  #   ##    memory: 256Mi
+  #   ##    cpu: 250m
+  #   requests: {}
+
