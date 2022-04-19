@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "common.names.fullname" . }}-cloud-proxy
+spec:
+  type: {{ .Values.cloudProxy.service.type }}
+  ports:
+  - port: {{ .Values.cloudProxy.service.port }}
+    protocol: TCP
+    targetPort: 5432

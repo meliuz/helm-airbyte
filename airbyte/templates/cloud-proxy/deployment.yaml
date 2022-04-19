@@ -1,0 +1,27 @@
+
+{{ if .Values.cloudProxy.enabled -}}
+apiVersion: v1
+kind: Deployment
+metadata:
+  name: airbyte-cloud-proxy
+  labels:
+    {{- include "airbyte.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.cloudProxy.replicaCount }}
+  serviceAccountName: {{ include "airbyte.serviceAccountName" . }}
+  containers:
+    - image: {{ include "airbyte.cloudProxyImage" . }}
+      name: cloud-sql-proxy
+      imagePullPolicy: "{{ .Values.cloudProxy.image.pullPolicy }}"
+      command:
+      - "/cloud_sql_proxy"
+      - "-ip_address_types=PRIVATE"
+      - "-log_debug_stdout"
+      - "-enable_iam_login"
+      - "-instances={{ .Values.cloudProxy.projectId }}:{{ .Values.cloudProxy.region }}:{{ .Values.cloudProxy.instanceName }}=tcp:5432"
+      {{- if .Values.cloudProxy.resources }}
+      resources: {{- toYaml .Values.cloudProxy.resources | nindent 10 }}
+      {{- end }}
+  nodeSelector:
+    iam.gke.io/gke-metadata-server-enabled: "true"
+{{ -end }}
