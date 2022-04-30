@@ -23,6 +23,9 @@ spec:
       serviceAccountName: {{ include "airbyte.serviceAccountName" . }}
       containers:
         - image: {{ include "airbyte.cloudProxyImage" . }}
+          ports:
+            containerPort: 5432
+            hostPort: 5432
           name: cloud-sql-proxy
           imagePullPolicy: "{{ .Values.cloudProxy.image.pullPolicy }}"
           command:
