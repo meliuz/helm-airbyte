@@ -56,15 +56,4 @@ spec:
             secretKeyRef:
               name: {{ include "common.names.fullname" . }}-secrets
               key: DATABASE_USER
-    {{- if .Values.cloudProxy.enabled }}
-    - image: {{ include "airbyte.cloudProxyImage" . }}
-      name: cloud-sql-proxy
-      imagePullPolicy: "{{ .Values.cloudProxy.image.pullPolicy }}"
-      command:
-      - "/cloud_sql_proxy"
-      - "-ip_address_types=PRIVATE"
-      - "-log_debug_stdout"
-      - "-enable_iam_login"
-      - "-instances={{ .Values.cloudProxy.projectId }}:{{ .Values.cloudProxy.region }}:{{ .Values.cloudProxy.instanceName }}=tcp:5432"
-    {{- end }}
 {{- end }}

@@ -222,23 +222,6 @@ spec:
         {{- if .Values.server.extraVolumeMounts }}
   {{ toYaml .Values.server.extraVolumeMounts | nindent 8 }}
         {{- end }}
-      {{- if .Values.cloudProxy.enabled }}
-      - image: {{ include "airbyte.cloudProxyImage" . }}
-        name: cloud-sql-proxy
-        imagePullPolicy: "{{ .Values.cloudProxy.image.pullPolicy }}"
-        command:
-        - "/cloud_sql_proxy"
-        - "-ip_address_types=PRIVATE"
-        - "-log_debug_stdout"
-        - "-enable_iam_login"
-        - "-instances={{ .Values.cloudProxy.projectId }}:{{ .Values.cloudProxy.region }}:{{ .Values.cloudProxy.instanceName }}=tcp:5432"
-        {{- if .Values.cloudProxy.resources }}
-        resources: {{- toYaml .Values.cloudProxy.resources | nindent 10 }}
-        {{- end }}
-        {{- if .Values.webapp.containerSecurityContext }}
-        securityContext: {{- toYaml .Values.webapp.containerSecurityContext | nindent 10 }}
-        {{- end }}
-      {{- end }}
       volumes:
       - name: airbyte-data
         persistentVolumeClaim:

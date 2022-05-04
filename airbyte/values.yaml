@@ -964,34 +964,34 @@ jobs:
     ##    cpu: 250m
     requests: {}
 
-cloudProxy:
-  enabled: true
-  replicaCount: 1
+# cloudProxy:
+#   enabled: true
+#   replicaCount: 1
 
-  image:
-    repository: gcr.io/cloudsql-docker/gce-proxy
-    pullPolicy: IfNotPresent
-    tag: latest
+#   image:
+#     repository: gcr.io/cloudsql-docker/gce-proxy
+#     pullPolicy: IfNotPresent
+#     tag: latest
   
-  projectId: ""
-  region: ""
-  instanceName: ""
+#   projectId: ""
+#   region: ""
+#   instanceName: ""
 
-  service:
-    type: ClusterIP
-    port: 5432
+#   service:
+#     type: ClusterIP
+#     port: 5432
 
-  podAnnotations: {}
+#   podAnnotations: {}
 
-  # resources:
-  #   ## Example:
-  #   ## limits:
-  #   ##    cpu: 200m
-  #   ##    memory: 1Gi
-  #   limits: {}
-  #   ## Examples:
-  #   ## requests:
-  #   ##    memory: 256Mi
-  #   ##    cpu: 250m
-  #   requests: {}
+#   # resources:
+#   #   ## Example:
+#   #   ## limits:
+#   #   ##    cpu: 200m
+#   #   ##    memory: 1Gi
+#   #   limits: {}
+#   #   ## Examples:
+#   #   ## requests:
+#   #   ##    memory: 256Mi
+#   #   ##    cpu: 250m
+#   #   requests: {}
 

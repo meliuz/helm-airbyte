@@ -228,9 +228,3 @@ Returns the Temporal Image. TODO: This will probably be replaced if we move to u
 {{- include "common.images.image" (dict "imageRoot" .Values.temporal.image "global" .Values.global) -}}
 {{- end -}}
 
-{{/*
-Returns the Cloud Proxy Image
-*/}}
-{{- define "airbyte.cloudProxyImage" -}}
-{{- include "common.images.image" (dict "imageRoot" .Values.cloudProxy.image "global" .Values.global) -}}
-{{- end -}}
