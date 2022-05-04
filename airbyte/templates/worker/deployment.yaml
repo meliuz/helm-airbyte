@@ -158,6 +158,16 @@ spec:
             configMapKeyRef:
               name: {{ include "common.names.fullname" . }}-env
               key: JOB_MAIN_CONTAINER_MEMORY_LIMIT
+        - name: KUBERNETES_AUTH_TRYSERVICEACCOUNT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: KUBERNETES_AUTH_TRYSERVICEACCOUNT
+        - name: KUBERNETES_AUTH_TRYKUBECONFIG
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: KUBERNETES_AUTH_TRYKUBECONFIG
         - name: S3_LOG_BUCKET
           valueFrom:
             configMapKeyRef:
@@ -310,6 +320,23 @@ spec:
         {{- if .Values.worker.extraVolumeMounts }}
 {{ toYaml .Values.worker.extraVolumeMounts | nindent 8 }}
         {{- end }}
+      {{- if .Values.cloudProxy.enabled }}
+      - image: {{ include "airbyte.cloudProxyImage" . }}
+        name: cloud-sql-proxy
+        imagePullPolicy: "{{ .Values.cloudProxy.image.pullPolicy }}"
+        command:
+        - "/cloud_sql_proxy"
+        - "-ip_address_types=PRIVATE"
+        - "-log_debug_stdout"
+        - "-enable_iam_login"
+        - "-instances={{ .Values.cloudProxy.projectId }}:{{ .Values.cloudProxy.region }}:{{ .Values.cloudProxy.instanceName }}=tcp:5432"
+        {{- if .Values.cloudProxy.resources }}
+        resources: {{- toYaml .Values.cloudProxy.resources | nindent 12 }}
+        {{- end }}
+        {{- if .Values.webapp.containerSecurityContext }}
+        securityContext: {{- toYaml .Values.webapp.containerSecurityContext | nindent 10 }}
+        {{- end }}
+      {{- end }}
       volumes:
       - name: gcs-log-creds-volume
         secret:

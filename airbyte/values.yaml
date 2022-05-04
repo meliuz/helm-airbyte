@@ -31,6 +31,8 @@ version: ""
 
 ## @section Webapp Parameters
 
+runBootload: true
+
 webapp:
   ## @param webapp.replicaCount Number of webapp replicas
   replicaCount: 1
@@ -684,7 +686,7 @@ bootloader:
     repository: airbyte/bootloader
     pullPolicy: IfNotPresent
     tag: 0.36.8-alpha
-
+    
   ## @param bootloader.podAnnotations [object] Add extra annotations to the bootloader pod
   ##
   podAnnotations: {}
@@ -936,11 +938,6 @@ jobs:
   ## @param jobs.resources.requests [object] The requested resources for jobs
   resources:
     ## Example:
-    ## requests:
-    ##    memory: 256Mi
-    ##    cpu: 250m
-    requests: {}
-    ## Example:
     ## limits:
     ##    cpu: 200m
     ##    memory: 1Gi
@@ -966,3 +963,40 @@ jobs:
     ##   value: "true"
     ##   effect: NoSchedule
     tolerations: []
+    ## Examples:
+    ## requests:
+    ##    memory: 256Mi
+    ##    cpu: 250m
+    requests: {}
+
+# cloudProxy:
+#   enabled: true
+#   replicaCount: 1
+
+#   image:
+#     repository: gcr.io/cloudsql-docker/gce-proxy
+#     pullPolicy: IfNotPresent
+#     tag: latest
+  
+#   projectId: ""
+#   region: ""
+#   instanceName: ""
+
+#   service:
+#     type: ClusterIP
+#     port: 5432
+
+#   podAnnotations: {}
+
+#   # resources:
+#   #   ## Example:
+#   #   ## limits:
+#   #   ##    cpu: 200m
+#   #   ##    memory: 1Gi
+#   #   limits: {}
+#   #   ## Examples:
+#   #   ## requests:
+#   #   ##    memory: 256Mi
+#   #   ##    cpu: 250m
+#   #   requests: {}
+
