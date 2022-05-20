@@ -1,3 +1,4 @@
+{{- if .Values.runBootload }}
 ---
 apiVersion: v1
 kind: Pod
@@ -55,3 +56,4 @@ spec:
             secretKeyRef:
               name: {{ include "common.names.fullname" . }}-secrets
               key: DATABASE_USER
+{{- end }}
