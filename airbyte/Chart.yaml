@@ -23,7 +23,9 @@ version: 0.3.4
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
 
-appVersion: "0.38.2-alpha"
+appVersion: "0.38.4-alpha"
+
+
 
 dependencies:
   - name: common
