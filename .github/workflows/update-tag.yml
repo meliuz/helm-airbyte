@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  update-chart:
+  update-tag:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -31,3 +31,4 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: minor
