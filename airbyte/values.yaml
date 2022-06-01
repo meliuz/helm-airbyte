@@ -43,7 +43,7 @@ webapp:
   image:
     repository: airbyte/webapp
     pullPolicy: IfNotPresent
-    tag: 0.39.1-alpha
+    tag: 0.39.7-alpha
 
   ## @param webapp.podAnnotations [object] Add extra annotations to the webapp pod(s)
   ##
@@ -91,9 +91,11 @@ webapp:
 
   ## @param webapp.service.type The service type to use for the webapp service
   ## @param webapp.service.port The service port to expose the webapp on
+  ## @param webapp.service.annotations Annotations for the webapp service resource
   service:
     type: ClusterIP
     port: 80
+    annotations: {}
 
   ## Web app resource requests and limits
   ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
@@ -209,7 +211,7 @@ scheduler:
   image:
     repository: airbyte/scheduler
     pullPolicy: IfNotPresent
-    tag: 0.39.1-alpha
+    tag: 0.39.7-alpha
 
   ## @param scheduler.podAnnotations [object] Add extra annotations to the scheduler pod
   ##
@@ -440,7 +442,7 @@ server:
   image:
     repository: airbyte/server
     pullPolicy: IfNotPresent
-    tag: 0.39.1-alpha
+    tag: 0.39.7-alpha
 
   ## @param server.podAnnotations [object] Add extra annotations to the server pod
   ##
@@ -567,7 +569,7 @@ worker:
   image:
     repository: airbyte/worker
     pullPolicy: IfNotPresent
-    tag: 0.39.1-alpha
+    tag: 0.39.7-alpha
 
   ## @param worker.podAnnotations [object] Add extra annotations to the worker pod(s)
   ##
@@ -685,7 +687,7 @@ bootloader:
   image:
     repository: airbyte/bootloader
     pullPolicy: IfNotPresent
-    tag: 0.39.1-alpha
+    tag: 0.39.7-alpha
 
 
   ## @param bootloader.podAnnotations [object] Add extra annotations to the bootloader pod
