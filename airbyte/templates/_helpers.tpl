@@ -229,6 +229,14 @@ Returns the Temporal Image. TODO: This will probably be replaced if we move to u
 {{- end -}}
 
 {{/*
+Returns the metrics-reporter Image
+*/}}
+{{- define "airbyte.metricsReporterImage" -}}
+{{- include "common.images.image" (dict "imageRoot" .Values.temporal.image "global" .Values.global) -}}
+{{- end -}}
+
+
+{{/*
 Construct comma separated list of key/value pairs from object (useful for ENV var values)
 */}}
 {{- define "airbyte.flattenMap" -}}

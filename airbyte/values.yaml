@@ -870,6 +870,11 @@ temporal:
     ##    cpu: 200m
     ##    memory: 1Gi
     limits: {}
+metrics:
+  image:
+    repository: airbyte/metrics-reporter
+    pullPolicy: IfNotPresent
+    tag: 0.39.7-alpha
 
 ## @section Airbyte Database parameters
 
