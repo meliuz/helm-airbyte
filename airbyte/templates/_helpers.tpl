@@ -231,8 +231,8 @@ Returns the Temporal Image. TODO: This will probably be replaced if we move to u
 {{/*
 Returns the metrics-reporter Image
 */}}
-{{- define "airbyte.metricsReporterImage" -}}
-{{- include "common.images.image" (dict "imageRoot" .Values.temporal.image "global" .Values.global) -}}
+{{- define "airbyte.metricsImage" -}}
+{{- include "common.images.image" (dict "imageRoot" .Values.metrics.image "global" .Values.global) -}}
 {{- end -}}
 
 

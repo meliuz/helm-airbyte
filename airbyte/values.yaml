@@ -871,10 +871,23 @@ temporal:
     ##    memory: 1Gi
     limits: {}
 metrics:
+  enabled: true
   image:
     repository: airbyte/metrics-reporter
     pullPolicy: IfNotPresent
     tag: 0.39.7-alpha
+
+  resources:
+      ## Example:
+      ## limits:
+      ##    cpu: 200m
+      ##    memory: 1Gi
+      limits: {}
+      ## Examples:
+      ## requests:
+      ##    memory: 256Mi
+      ##    cpu: 250m
+      requests: {}
 
 ## @section Airbyte Database parameters
 
