@@ -2,6 +2,30 @@ apiVersion: v1
 entries:
   airbyte:
   - apiVersion: v2
+    appVersion: 0.39.10-alpha
+    created: "2022-06-04T19:31:01.426586901Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 1.x.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.x.x
+    - condition: logs.minio.enabled
+      name: minio
+      repository: https://charts.bitnami.com/bitnami
+      version: 11.x.x
+    description: Helm chart to deploy airbyte
+    digest: eb4a222a1a45a76983f7582c20711ac3c259f67696b5c2c885b35d999d11daac
+    name: airbyte
+    type: application
+    urls:
+    - https://meliuz.github.io/helm-airbyte/airbyte-0.3.7.tgz
+    version: 0.3.7
+  - apiVersion: v2
     appVersion: 0.39.7-alpha
     created: "2022-06-01T13:24:52.97463052Z"
     dependencies:
@@ -145,4 +169,4 @@ entries:
     urls:
     - https://meliuz.github.io/helm-airbyte/airbyte-0.3.1.tgz
     version: 0.3.1
-generated: "2022-06-04T19:29:19.986309797Z"
+generated: "2022-06-04T19:31:01.414779893Z"
