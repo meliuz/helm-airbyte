@@ -136,7 +136,7 @@ Helm charts for Airbyte.
 | `server.replicaCount`                       | Number of server replicas                                        | `1`              |
 | `server.image.repository`                   | The repository to use for the airbyte server image.              | `airbyte/server` |
 | `server.image.pullPolicy`                   | the pull policy to use for the airbyte server image              | `IfNotPresent`   |
-| `server.image.tag`                          | The airbyte server image tag. Defaults to the chart's AppVersion | `0.39.10-alpha`   |
+| `server.image.tag`                          | The airbyte server image tag. Defaults to the chart's AppVersion | `0.39.10-alpha`   
 | `server.podAnnotations`                     | Add extra annotations to the server pod                          | `{}`             |
 | `server.containerSecurityContext`           | Security context for the container                               | `{}`             |
 | `server.livenessProbe.enabled`              | Enable livenessProbe on the server                               | `true`           |
@@ -203,7 +203,7 @@ Helm charts for Airbyte.
 | ------------------------------- | -------------------------------------------------------------------- | -------------------- |
 | `bootloader.image.repository`   | The repository to use for the airbyte bootloader image.              | `airbyte/bootloader` |
 | `bootloader.image.pullPolicy`   | the pull policy to use for the airbyte bootloader image              | `IfNotPresent`       |
-| `bootloader.image.tag`          | The airbyte bootloader image tag. Defaults to the chart's AppVersion | `0.39.8-alpha`       |
+| `bootloader.image.tag`          | The airbyte bootloader image tag. Defaults to the chart's AppVersion | `0.39.10-alpha`       |
 | `bootloader.podAnnotations`     | Add extra annotations to the bootloader pod                          | `{}`                 |
 | `bootloader.nodeSelector`       | Node labels for pod assignment                                       | `{}`                 |
 | `bootloader.resources.limits`   | The resources limits for the airbyte bootloader image                | `{}`                 |
