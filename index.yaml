@@ -50,8 +50,8 @@ entries:
     - https://meliuz.github.io/helm-airbyte/airbyte-0.3.5.tgz
     version: 0.3.5
   - apiVersion: v2
-    appVersion: 0.38.4-alpha
-    created: "2022-05-20T14:31:39.863466507Z"
+    appVersion: 0.39.10-alpha
+    created: "2022-06-04T19:29:19.999143429Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -65,9 +65,9 @@ entries:
     - condition: logs.minio.enabled
       name: minio
       repository: https://charts.bitnami.com/bitnami
-      version: 7.x.x
+      version: 11.x.x
     description: Helm chart to deploy airbyte
-    digest: 10888a2b428b2d37380f8e5f391b6afdf51b5a3e75706e716edcad235fa5a452
+    digest: 39dd3effb991230b75e81709eefbf31eb502429af7813317e6dfee13fbb96794
     name: airbyte
     type: application
     urls:
@@ -145,4 +145,4 @@ entries:
     urls:
     - https://meliuz.github.io/helm-airbyte/airbyte-0.3.1.tgz
     version: 0.3.1
-generated: "2022-06-01T13:24:52.964172338Z"
+generated: "2022-06-04T19:29:19.986309797Z"
