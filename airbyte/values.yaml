@@ -870,12 +870,13 @@ temporal:
     ##    cpu: 200m
     ##    memory: 1Gi
     limits: {}
+
 metrics:
   enabled: true
   image:
     repository: airbyte/metrics-reporter
     pullPolicy: IfNotPresent
-    tag: 0.39.7-alpha
+    tag: 0.39.10-alpha
 
   resources:
       ## Example:
@@ -1033,5 +1034,3 @@ jobs:
     ##    memory: 256Mi
     ##    cpu: 250m
     requests: {}
-
-
