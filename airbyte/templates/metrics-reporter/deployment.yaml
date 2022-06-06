@@ -57,10 +57,19 @@ spec:
             secretKeyRef:
               name: {{ include "common.names.fullname" . }}-secrets
               key: DATABASE_USER
+        - name: CONFIGS_DATABASE_MINIMUM_FLYWAY_MIGRATION_VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: CONFIGS_DATABASE_MINIMUM_FLYWAY_MIGRATION_VERSION
+        - name: JOBS_DATABASE_MINIMUM_FLYWAY_MIGRATION_VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: JOBS_DATABASE_MINIMUM_FLYWAY_MIGRATION_VERSION
         {{- if .Values.server.extraEnv }}
         {{ .Values.server.extraEnv | toYaml | nindent 8 }}
         {{- end }}
-        resources: {{- toYaml .Values.metrics.resources | nindent 8 }}
         {{- if .Values.server.containerSecurityContext }}
         securityContext: {{- toYaml .Values.server.containerSecurityContext | nindent 10 }}
         {{- end }}
