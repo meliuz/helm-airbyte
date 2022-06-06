@@ -11,8 +11,8 @@ repos:
       - id: pretty-format-json
         args: ["--autofix"]
       - id: check-merge-conflict
-      - id: check-yaml
-        args: ["--allow-multiple-documents"]
+      # - id: check-yaml
+        # args: ["--allow-multiple-documents"]
       - id: debug-statements
       - id: detect-private-key
       - id: end-of-file-fixer
