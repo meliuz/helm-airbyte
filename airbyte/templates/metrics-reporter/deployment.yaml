@@ -1,0 +1,76 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "common.names.fullname" . }}-metrics-reporter
+  labels:
+    {{- include "airbyte.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      airbyte: metrics-reporter
+  strategy:
+    type: Recreate # Needed due to volume claims
+  template:
+    metadata:
+      labels:
+        airbyte: metrics-reporter
+    spec:
+      serviceAccountName: {{ include "airbyte.serviceAccountName" . }}
+      {{- if .Values.server.nodeSelector }}
+      nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.server.nodeSelector "context" $) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.server.tolerations }}
+      tolerations: {{- include "common.tplvalues.render" (dict "value" .Values.server.tolerations "context" $) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.server.affinity }}
+      affinity: {{- include "common.tplvalues.render" (dict "value" .Values.server.affinity "context" $) | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: airbyte-metrics-reporter-container
+        image: {{ include "airbyte.metricsImage" . }}
+        imagePullPolicy: "{{ .Values.metrics.image.pullPolicy }}"
+        env:
+        - name: AIRBYTE_VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: AIRBYTE_VERSION
+        - name: CONFIG_ROOT
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: CONFIG_ROOT
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "airbyte.database.secret.name" . }}
+              key: {{ include "airbyte.database.secret.passwordKey" . }}
+        - name: DATABASE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: DATABASE_URL
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: {{ include "common.names.fullname" . }}-secrets
+              key: DATABASE_USER
+        - name: CONFIGS_DATABASE_MINIMUM_FLYWAY_MIGRATION_VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: CONFIGS_DATABASE_MINIMUM_FLYWAY_MIGRATION_VERSION
+        - name: JOBS_DATABASE_MINIMUM_FLYWAY_MIGRATION_VERSION
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: JOBS_DATABASE_MINIMUM_FLYWAY_MIGRATION_VERSION
+        {{- if .Values.server.extraEnv }}
+        {{ .Values.server.extraEnv | toYaml | nindent 8 }}
+        {{- end }}
+        {{- if .Values.server.containerSecurityContext }}
+        securityContext: {{- toYaml .Values.server.containerSecurityContext | nindent 10 }}
+        {{- end }}
+{{- end }}

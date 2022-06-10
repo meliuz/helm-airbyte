@@ -20,6 +20,7 @@ spec:
       {{- end }}
     spec:
       serviceAccountName: {{ include "airbyte.serviceAccountName" . }}
+      automountServiceAccountToken: true
       {{- if .Values.temporal.nodeSelector }}
       nodeSelector: {{- include "common.tplvalues.render" (dict "value" .Values.temporal.nodeSelector "context" $) | nindent 8 }}
       {{- end }}
