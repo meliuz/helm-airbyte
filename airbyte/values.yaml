@@ -198,7 +198,7 @@ webapp:
   ##     emptyDir: {}
   ##
   extraVolumes: []
-  
+
 ## @section Scheduler Parameters
 
 scheduler:

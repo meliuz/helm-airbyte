@@ -257,4 +257,3 @@ Construct semi-colon delimited list of comma separated key/value pairs from arra
 {{- end -}}
 {{ join ";" $mapList }}
 {{- end -}}
-

@@ -5,7 +5,7 @@ name: update-tag-and-helm-chart
 # Controls when the workflow will run
 on:
   push:
-    branches:    
+    branches:
       - 'main'
     paths:
       - airbyte/**

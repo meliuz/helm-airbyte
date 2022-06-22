@@ -28,7 +28,7 @@ jobs:
       # Runs a single command using the runners shell
       - name: Subtree split
         run: git subtree split --prefix=charts --onto upstream-charts -b upstream-charts
-      
+
       - name: Checkout to upstream-charts
         run: git checkout upstream-charts
 
@@ -43,7 +43,7 @@ jobs:
 
       - name: Push to remote
         run: git push -u origin upstream-charts
-      
+
       - name: Checkout to meliuz/helm-airbyte
         uses: actions/checkout@v3
         with:
@@ -61,7 +61,7 @@ jobs:
           title: ${{ github.event.commits[-1].message }}
           body: >
             **${{ github.event.commits[-1].message }}**
-            
+
             Pull upstream commits
 
 
@@ -76,7 +76,7 @@ jobs:
       #     branch: upstream-charts
       #     delete-branch: false
       #     title: Update helm chart with changes from upstream
-        
+
 
       # - name: Check outputs
       #   run: |
