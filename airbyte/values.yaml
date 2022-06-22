@@ -43,7 +43,7 @@ webapp:
   image:
     repository: airbyte/webapp
     pullPolicy: IfNotPresent
-    tag: 0.39.17-alpha
+    tag: 0.39.21-alpha
 
   ## @param webapp.podAnnotations [object] Add extra annotations to the webapp pod(s)
   ##
@@ -198,8 +198,7 @@ webapp:
   ##     emptyDir: {}
   ##
   extraVolumes: []
-
-
+  
 ## @section Scheduler Parameters
 
 scheduler:
@@ -325,7 +324,6 @@ scheduler:
   ##
   extraVolumes: []
 
-
 ## @section Pod Sweeper parameters
 
 podSweeper:
@@ -444,8 +442,7 @@ server:
   image:
     repository: airbyte/server
     pullPolicy: IfNotPresent
-    tag: 0.39.17-alpha
-
+    tag: 0.39.21-alpha
 
   ## @param server.podAnnotations [object] Add extra annotations to the server pod
   ##
@@ -572,8 +569,7 @@ worker:
   image:
     repository: airbyte/worker
     pullPolicy: IfNotPresent
-    tag: 0.39.17-alpha
-
+    tag: 0.39.21-alpha
 
   ## @param worker.podAnnotations [object] Add extra annotations to the worker pod(s)
   ##
@@ -691,8 +687,7 @@ bootloader:
   image:
     repository: airbyte/bootloader
     pullPolicy: IfNotPresent
-    tag: 0.39.17-alpha
-
+    tag: 0.39.21-alpha
 
   ## @param bootloader.podAnnotations [object] Add extra annotations to the bootloader pod
   ##
@@ -876,13 +871,12 @@ temporal:
     ##    memory: 1Gi
     limits: {}
 
-
 metrics:
   enabled: true
   image:
     repository: airbyte/metrics-reporter
     pullPolicy: IfNotPresent
-    tag: 0.39.14-alpha
+    tag: 0.39.21-alpha
 
   resources:
       ## Example:
@@ -1037,7 +1031,6 @@ jobs:
     ##   effect: NoSchedule
     tolerations: []
 
-
     ## JOB_KUBE_MAIN_CONTAINER_IMAGE_PULL_SECRET
     ## image pull secret to use for job pod
     ## @param jobs.kube.main_container_image_pull_secret [string]  image pull secret to use for job pod
@@ -1048,4 +1041,3 @@ jobs:
     ##    memory: 256Mi
     ##    cpu: 250m
     requests: {}
-
