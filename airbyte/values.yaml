@@ -871,7 +871,6 @@ temporal:
     ##    memory: 1Gi
     limits: {}
 
-
 metrics:
   enabled: true
   image:
