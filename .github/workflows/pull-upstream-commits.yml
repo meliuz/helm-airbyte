@@ -1,0 +1,84 @@
+# This is a basic workflow to help you get started with Actions
+
+name: pull-upstream-commits
+
+# Controls when the workflow will run
+on:
+  schedule:
+    - cron:  0 12 * * *
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  pull-upstream-commits:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout to airbytehq/airbyte repo
+        uses: actions/checkout@v3
+        with:
+          repository: airbytehq/airbyte
+          fetch-depth: 0
+
+      # Runs a single command using the runners shell
+      - name: Subtree split
+        run: git subtree split --prefix=charts --onto upstream-charts -b upstream-charts
+
+      - name: Checkout to upstream-charts
+        run: git checkout upstream-charts
+
+      - name: Rename remote
+        run: git remote rename origin upstream
+
+      - name: Add meliuz/helm-airbyte as remote
+        run: git remote add origin https://github.com/meliuz/helm-airbyte.git
+
+      - name: Fetch origin
+        run: git fetch origin
+
+      - name: Push to remote
+        run: git push -u origin upstream-charts
+
+      - name: Checkout to meliuz/helm-airbyte
+        uses: actions/checkout@v3
+        with:
+          repository: meliuz/helm-airbyte
+          ref: upstream-charts
+          fetch-depth: 0
+
+      - name: Open PR
+        uses: devops-infra/action-pull-request@v0.4.2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: upstream-charts
+          target_branch: main
+          label: automatic,feature
+          title: ${{ github.event.commits[-1].message }}
+          body: >
+            **${{ github.event.commits[-1].message }}**
+
+            Pull upstream commits
+
+
+      # - name: Create changelog record
+      #   run: echo "Ran on $(date +'%Y-%m-%dT%H:%M:%S')" > "update.md"
+
+      # - name: Create Pull Request
+      #   id: cpr
+      #   uses: peter-evans/create-pull-request@v4
+      #   with:
+      #     base: main
+      #     branch: upstream-charts
+      #     delete-branch: false
+      #     title: Update helm chart with changes from upstream
+
+
+      # - name: Check outputs
+      #   run: |
+      #     echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+      #     echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
