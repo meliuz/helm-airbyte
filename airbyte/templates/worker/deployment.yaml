@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -217,16 +216,16 @@ spec:
             configMapKeyRef:
               name: {{ include "common.names.fullname" . }}-env
               key: S3_PATH_STYLE_ACCESS
-        - name: GOOGLE_APPLICATION_CREDENTIALS
-          valueFrom:
-            configMapKeyRef:
-              name: {{ include "common.names.fullname" . }}-env
-              key: GOOGLE_APPLICATION_CREDENTIALS
         - name: GCS_LOG_BUCKET
           valueFrom:
             configMapKeyRef:
               name: {{ include "common.names.fullname" . }}-env
               key: GCS_LOG_BUCKET
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          valueFrom:
+            configMapKeyRef:
+              name: {{ include "common.names.fullname" . }}-env
+              key: GOOGLE_APPLICATION_CREDENTIALS
         - name: STATE_STORAGE_MINIO_BUCKET_NAME
           valueFrom:
             configMapKeyRef:
