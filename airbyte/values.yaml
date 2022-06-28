@@ -43,7 +43,8 @@ webapp:
   image:
     repository: airbyte/webapp
     pullPolicy: IfNotPresent
-    tag: 0.39.25-alpha
+    tag: 0.39.28-alpha
+
 
   ## @param webapp.podAnnotations [object] Add extra annotations to the webapp pod(s)
   ##
@@ -442,7 +443,8 @@ server:
   image:
     repository: airbyte/server
     pullPolicy: IfNotPresent
-    tag: 0.39.25-alpha
+    tag: 0.39.28-alpha
+
 
   ## @param server.podAnnotations [object] Add extra annotations to the server pod
   ##
@@ -569,7 +571,6 @@ worker:
   image:
     repository: airbyte/worker
     pullPolicy: IfNotPresent
-    tag: 0.39.25-alpha
 
   ## @param worker.podAnnotations [object] Add extra annotations to the worker pod(s)
   ##
@@ -687,7 +688,7 @@ bootloader:
   image:
     repository: airbyte/bootloader
     pullPolicy: IfNotPresent
-    tag: 0.39.25-alpha
+    tag: 0.39.28-alpha
 
   ## @param bootloader.podAnnotations [object] Add extra annotations to the bootloader pod
   ##
@@ -876,7 +877,7 @@ metrics:
   image:
     repository: airbyte/metrics-reporter
     pullPolicy: IfNotPresent
-    tag: 0.39.23-alpha
+    tag: 0.39.28-alpha
 
   resources:
       ## Example:
@@ -979,7 +980,7 @@ logs:
   ## @param logs.gcs.credentialsJson Base64 encoded json GCP credentials file contents
   gcs:
     bucket: ""
-    # If you are mounting an existing secret to extraVolumes on scheduler, server and worker
+    # If you are mounting an existing secret to extraVolumes on server and worker
     # deployments, then set credentials to the path of the mounted JSON file
     credentials: ""
     # If credentialsJson is set then credentials auto resolves (to /secrets/gcs-log-creds/gcp.json)
