@@ -45,7 +45,6 @@ webapp:
     pullPolicy: IfNotPresent
     tag: 0.39.28-alpha
 
-
   ## @param webapp.podAnnotations [object] Add extra annotations to the webapp pod(s)
   ##
   podAnnotations: {}
@@ -444,7 +443,7 @@ server:
     repository: airbyte/server
     pullPolicy: IfNotPresent
     tag: 0.39.28-alpha
-
+    
 
   ## @param server.podAnnotations [object] Add extra annotations to the server pod
   ##
@@ -571,6 +570,7 @@ worker:
   image:
     repository: airbyte/worker
     pullPolicy: IfNotPresent
+    tag: 0.39.28-alpha
 
   ## @param worker.podAnnotations [object] Add extra annotations to the worker pod(s)
   ##
