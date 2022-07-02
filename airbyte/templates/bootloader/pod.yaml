@@ -1,3 +1,4 @@
+{{- if .Values.runBootload }}
 ---
 apiVersion: v1
 kind: Pod
@@ -62,3 +63,5 @@ spec:
               name: {{ include "common.names.fullname" . }}-secrets
               key: DATABASE_USER
       resources: {{- toYaml .Values.bootloader.resources | nindent 8 }}
+
+{{- end }}
